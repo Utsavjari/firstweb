@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+    <style>
+        .container
+        {
+          display: flex; 
+        }
+        .title
+        {
+            text-align: center;
+            color: red;
+              
+        }
+        .productlist
+        {
+            align-items: center;
+            justify-content: center;
+            width: 350px;
+            border: solid 5px gold;
+            display: flex;
+        }
+        .image
+        {
+            margin: 10px 60px ;
+        }
+        .name
+        {
+            margin: 10px 60px ;
+
+        }
+        .price{
+            margin: 10px 60px ;
+            color: red;
+
+        }  
+        .dis
+        {
+            margin: 10px 60px ;
+            background-color:gold ;
+
+        } 
+        #btn1{
+          width: 100px;
+            color:red;
+            background-color: orange;
+        }  
+        #btn2
+        {
+           width: 100px;
+            color:brown;
+            background-color: pink;
+            margin-left: 120px;
+            margin-top:-20px ;
+        }  
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="title">random</div>
+        <div class="productlist">
+            <div class="image"></div>
+            <div class="name"></div>
+            <div class="price"></div>
+            <div class="dis"></div>
+            <button id="btn1"></button> 
+            <button id="btn2"></button> 
+
+        </div>
+
+    </div>
+
+</body>
+<script>
+ $(document).ready(function () {
+        $.getJSON("shopping.json", function (obj) {
+            var product = "";
+            $.each(obj, function (key, value) {
+                product += '<div>';
+                product += '<div class="image"><img src= "image/' + value.pimg + '"width="150" height="70"></div>';
+                product += '<div class="name">' + value.name + '</div>';
+                product += '<div class="price">' + value.price + '</div>';
+                product += '<div class="dis">' + value.dis + '</div>';
+
+                product += '<div id="btn1">' + value.button + '</div>';
+                product += '<div id="btn2">' + value.button2 + '</div>';
+               
+
+                product += '</div>';
+
+            });
+            $(".container").html(product);
+        });
+
+
+    });
+
+</script>
+
+</html>
